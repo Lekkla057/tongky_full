@@ -26,11 +26,9 @@ function getProductByID(req, res) {
                         req.params.id
                 });
         })
-        .catch(function (error) {
-            res.status(500).json({
-                status: 'failed',
-                message: 'Failed to retriave Product ID:' + req.params.id
-            });
+       .catch(function (error) {
+            console.log('ERROR:', error)
+        
 
         })
 }
@@ -66,7 +64,7 @@ function updateProduct(req, res) {
 }
 
 function deleteProduct(req, res) {
-    db.none('DELETE FROM products where product_id =' + req.params.id,
+    db.none('delete FROM products where product_id =' + req.params.id,
         req.body)
         .then(function (data) {
             res.status(200)
@@ -106,11 +104,7 @@ function getPurchase_itemByID(req, res) {
                 });
         })
         .catch(function (error) {
-            res.status(200).json({
-                status: 'failed',
-                message: 'Failed to retriave Product ID:' + req.params.id
-            });
-
+            console.log('ERROR:', error)
         })
 }
 
@@ -129,14 +123,7 @@ function insertPurchase_item(req, res) {
             console.log('ERROR:', error)
         })
 
-    db.any('select * from purchase_items').then(function (data) {
-        res.status(200)
-            .json({
-                status: 'success',
-                data: data,
-                message: 'Delete id=' + req.params.id
-            });
-    })
+    
 }
 function updatePurchase_item(req, res) {
     db.any('update purchase_items set purchase_id=${purchase_id},product_id=${product_id},price=${price},quantity=${quantity} where id =' + req.params.id,
@@ -154,7 +141,7 @@ function updatePurchase_item(req, res) {
 }
 
 function DeletePurchase_item(req, res) {
-    db.any('DELETE from purchase_items where id=' + req.params.id)
+    db.any('delete from purchase_items where id=' + req.params.id)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -194,8 +181,6 @@ function getPurchaseByID(req, res) {
                 });
         })
         .catch(function (error) {
-            res.status(500)
-                .json({ status: "fail", message: "Mission Fail get back" })
             console.log('ERROR:', error)
         })
 }
@@ -230,7 +215,7 @@ function updatePurchase(req, res) {
         })
 }
 function DeletePurchase(req, res) {
-    db.any('DELETE from purchases where purchase_id=' + req.params.id)
+    db.any('delete from purchases where purchase_id=' + req.params.id)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -241,14 +226,6 @@ function DeletePurchase(req, res) {
         .catch(function (error) {
             console.log('ERROR:', error)
         })
-    db.any('select * from purchases').then(function (data) {
-        res.status(200)
-            .json({
-                status: 'success',
-                data: data,
-                message: 'Delete id=' + req.params.id
-            });
-    })
 }
 
 
@@ -302,7 +279,7 @@ function insertUser(req, res) {
     
 }
 function DeleteUser(req, res) {
-    db.any('DELETE from users where user_id=' + req.params.id)
+    db.any('delete from users where user_id=' + req.params.id)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -313,14 +290,7 @@ function DeleteUser(req, res) {
         .catch(function (error) {
             console.log('ERROR:', error)
         })
-    db.any('select * from users').then(function (data) {
-        res.status(200)
-            .json({
-                status: 'success',
-                data: data,
-                message: 'Delete id=' + req.params.id
-            });
-    })
+  
 }
 function updateUser(req, res) {
     db.any('update users set email=${email},password=${password},details=${details},created_at=${created_at} where user_id =' + req.params.id,
@@ -360,4 +330,3 @@ module.exports = {
     DeleteUser,
     updateUser
 }
-
