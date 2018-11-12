@@ -261,6 +261,7 @@ function getUserByID(req, res) {
 function insertUser(req, res) {
     
     db.any('insert into users(user_id,email,password,details,created_at)' +
+<<<<<<< HEAD
     'values(${user_id}, ${email}, ${password}, ${details}, ${created_at})',
     req.body)
     .then(function (data) {
@@ -273,6 +274,20 @@ function insertUser(req, res) {
     .catch(function (error) {
         console.log('ERROR:', error)
     })
+=======
+        'values(${user_id}, ${email}, ${password}, ${details}, ${created_at})',
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+>>>>>>> caa0fcf63bcce17c0bf010d4d4a72db4f33ce3ee
 
     
 }
@@ -304,8 +319,6 @@ function updateUser(req, res) {
             console.log('ERROR:', error)
         })
 }
-
-
 module.exports = {
     getAllProducts,
     getProductByID,
