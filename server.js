@@ -27,7 +27,6 @@ app.get('/api/json', function (req, res) {
     res.status(200).json(output);
 
 });
-
 app.get('/api/products', db.getAllProducts);
 app.get('/api/products/:id', db.getProductByID);
 app.post('/api/products', db.insertProduct);
