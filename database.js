@@ -24,6 +24,7 @@ function getProductByID(req, res) {
                     data: data,
                     message: 'Retrieved products id:' +
                         req.params.id
+                        
                 });
         })
        .catch(function (error) {
